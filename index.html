@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    :root {
+      --bg: rgb(243, 244, 246);
+      --text: #222;
+      --brand:blueviolet;
+      --hover:rgb(165, 163, 163);
+    }
+    .dark {
+      --bg: #222;
+      --text: rgb(243, 244, 246);
+      --hover:rgb(56, 54, 54);
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      transition: 1s ease-out;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 9999px;
+      display: inline-flex;
+      padding: 4px;
+      border: 2px solid;
+      /* box-shadow: 2px 2px 5px var(--hover); */
+    }
+    .wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .container__label {
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 6px 8px;
+      text-transform: capitalize;
+    }
+    .container__label--selected {
+      /* For selected radio only */
+      background-color: var(--brand);
+      color: var(--text);
+    }
+
+    .container__input {
+      display: none;
+    }
+    button{
+      position: absolute;
+      bottom: 10%;
+      background: var(--bg);
+      padding: 10px;
+      box-shadow: 2px 2px 5px var(--hover);
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      color: var(--text);
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <label id="light" class="container__label container__label--selected">
+          <input type="radio" class="container__input" />
+          lightMode
+        </label>
+        <label id="dark" class="container__label"> darkMode </label>
+      </div>
+      <button>Made With CSS🎉</button>
+    </div>
+    
+
+    <script>
+      var dark = document.getElementById("dark");
+      var light = document.getElementById("light");
+      var body = document.querySelector("body");
+      var btn = document.querySelector("button");
+      const toggleDark = () => {
+        if (dark.classList != "container__label--selected") {
+          dark.classList.add("container__label--selected");
+          light.classList.remove("container__label--selected");
+        } else {
+          dark.classList.remove("container__label--selected");
+        }
+      };
+      const toggleLight = () => {
+        if (light.classList == "container__label--selected") {
+          dark.classList.remove("container__label--selected");
+        } else {
+          light.classList.add("container__label--selected");
+          dark.classList.remove("container__label--selected");
+        }
+      };
+      const change = () => {
+        if (body.classList != "dark") {
+          body.classList.add("dark");
+        }
+      };
+      const changeLight = () => {
+        if (body.classList == "dark") {
+          body.classList.remove("dark");
+        }
+      };
+      dark.addEventListener("click", toggleDark);
+      light.addEventListener("click", toggleLight);
+      light.addEventListener("click", changeLight);
+      dark.addEventListener("click", change);
+    </script>
+  </body>
+</html>
